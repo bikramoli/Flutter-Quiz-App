@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questions.dart';
+import './answers.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,47 +20,47 @@ class MyAppState extends State<MyApp> {
     setState(() {
       number = number + 1;
     });
-    number = number + 1;
     print(number);
-  }
-
-  void reset() {
-    number = 0;
   }
 
   Widget build(BuildContext context) {
     var questions = [
-      'What is your name?',
-      'How old are you?',
-      'Name of birthplace?',
-      'What is your school name?',
+      {
+        'questionText': 'What is your favourate animal?',
+        'answers': ['Dog', 'Cat', 'Horse'],
+      },
+      {
+        'questionText': 'What is your favourate game?',
+        'answers': ['Football', 'Cricket', 'Basketball', 'Tennis'],
+      },
+      {
+        'questionText': 'What is your favourate Colour?',
+        'answers': ['Blue', 'Black', 'Red', 'white'],
+      }
     ];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('This is appbar'),
-        ),
+            title: Container(
+          width: double.infinity,
+          margin: EdgeInsets.all(20),
+          child: Text(
+            'Bikram Quiz App',
+            style: TextStyle(
+              fontSize: 30,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        )),
         body: Column(
           children: [
-            Questions(questions[number]),
-            RaisedButton(
-              child: Text('Answer 1'),
-              onPressed: () => print('this is correct one...!!!'),
+            Questions(
+              questions[number]['questionText'].toString(),
             ),
-            RaisedButton(
-              child: Text('Answer 2'),
-              onPressed: answer2,
-            ),
-            RaisedButton(
-              child: Text('Answer 3'),
-              onPressed: () {
-                print('this is anonymus function..!!');
-              },
-            ),
-            RaisedButton(
-              child: Text('Reset'),
-              onPressed: reset,
-            ),
+            ...(questions[number]['answers'] as List<String>).map((answer) {
+              return Answers(answer2, answer);
+            })
           ],
         ),
       ),
