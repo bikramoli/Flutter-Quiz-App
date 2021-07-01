@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_first_app/alert.dart';
 import './questions.dart';
 import './answers.dart';
+import './alert.dart';
 
 void main() {
   runApp(MyApp());
@@ -53,16 +55,19 @@ class MyAppState extends State<MyApp> {
             textAlign: TextAlign.center,
           ),
         )),
-        body: Column(
-          children: [
-            Questions(
-              questions[number]['questionText'].toString(),
-            ),
-            ...(questions[number]['answers'] as List<String>).map((answer) {
-              return Answers(answer2, answer);
-            })
-          ],
-        ),
+        body: number < questions.length
+            ? Column(
+                children: [
+                  Questions(
+                    questions[number]['questionText'].toString(),
+                  ),
+                  ...(questions[number]['answers'] as List<String>)
+                      .map((answer) {
+                    return Answers(answer2, answer);
+                  })
+                ],
+              )
+            : Alert(),
       ),
     );
   }
