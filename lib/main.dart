@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first_app/alert.dart';
-import './questions.dart';
-import './answers.dart';
+import './quiz.dart';
 import './alert.dart';
 
 void main() {
@@ -26,7 +24,7 @@ class MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-    var questions = [
+    var _questions = [
       {
         'questionText': 'What is your favourate animal?',
         'answers': ['Dog', 'Cat', 'Horse'],
@@ -55,17 +53,11 @@ class MyAppState extends State<MyApp> {
             textAlign: TextAlign.center,
           ),
         )),
-        body: number < questions.length
-            ? Column(
-                children: [
-                  Questions(
-                    questions[number]['questionText'].toString(),
-                  ),
-                  ...(questions[number]['answers'] as List<String>)
-                      .map((answer) {
-                    return Answers(answer2, answer);
-                  })
-                ],
+        body: number < _questions.length
+            ? Quiz(
+                answer2: answer2,
+                questions: _questions,
+                number: number,
               )
             : Alert(),
       ),
