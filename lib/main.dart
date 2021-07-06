@@ -9,15 +9,23 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return MyAppState();
   }
 }
 
 class MyAppState extends State<MyApp> {
   var number = 0;
-  void answer2() {
+  var totalScore = 0;
+
+  void reset() {
     setState(() {
+      number = 0;
+    });
+  }
+
+  void answer2(int score) {
+    setState(() {
+      totalScore = totalScore + score;
       number = number + 1;
     });
     print(number);
@@ -27,15 +35,30 @@ class MyAppState extends State<MyApp> {
     var _questions = [
       {
         'questionText': 'What is your favourate animal?',
-        'answers': ['Dog', 'Cat', 'Horse'],
+        'answers': [
+          {'Text': 'Dog', 'score': 10},
+          {'Text': 'Cat', 'score': 20},
+          {'Text': 'Horse', 'score': 30}
+        ],
       },
       {
-        'questionText': 'What is your favourate game?',
-        'answers': ['Football', 'Cricket', 'Basketball', 'Tennis'],
+        'questionText': 'Who is your favourate football players?',
+        'answers': [
+          {'Text': 'CR7', 'score': 10},
+          {'Text': 'Messi', 'score': 20},
+          {'Text': 'David', 'score': 30},
+          {'Text': 'Nymar', 'score': 40}
+        ],
       },
       {
-        'questionText': 'What is your favourate Colour?',
-        'answers': ['Blue', 'Black', 'Red', 'white'],
+        'questionText': 'What is your favourate fruit?',
+        'answers': [
+          {'Text': 'Apple', 'score': 10},
+          {'Text': 'Grapes', 'score': 20},
+          {'Text': 'Watermelon', 'score': 30},
+          {'Text': 'Mango', 'score': 40},
+          {'Text': 'Berries', 'score': 30}
+        ],
       }
     ];
 
@@ -59,7 +82,7 @@ class MyAppState extends State<MyApp> {
                 questions: _questions,
                 number: number,
               )
-            : Alert(),
+            : Alert(totalScore, reset),
       ),
     );
   }
