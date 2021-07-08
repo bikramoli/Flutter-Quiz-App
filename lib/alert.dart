@@ -42,10 +42,12 @@ class Alert extends StatelessWidget {
                 fontFamily: 'RobotoMono',
               ),
             ),
-            RaisedButton(
+            OutlineButton(
+              borderSide: BorderSide(
+                  color: Colors.blue), //for adding color in button borders
               child: Text(
-                'Go to first page',
-                style: TextStyle(fontSize: 30, fontFamily: 'RobotoMono'),
+                'Play again',
+                style: TextStyle(fontSize: 20, color: Colors.blue),
                 textAlign: TextAlign.center,
               ),
               onPressed: reset,
@@ -54,3 +56,4 @@ class Alert extends StatelessWidget {
         ));
   }
 }
+// style: TextStyle(fontFamily: 'RobotoMono')
