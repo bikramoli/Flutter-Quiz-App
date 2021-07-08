@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_first_app/questions.dart';
+import 'package:flutter_first_app/start.dart';
 import './quiz.dart';
 import './alert.dart';
+import './start.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +23,7 @@ class MyAppState extends State<MyApp> {
   void reset() {
     setState(() {
       number = 0;
+      totalScore = 0;
     });
   }
 
@@ -29,6 +33,12 @@ class MyAppState extends State<MyApp> {
       number = number + 1;
     });
     print(number);
+  }
+
+  void start() {
+    setState(() {
+      number = 1;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -69,20 +79,22 @@ class MyAppState extends State<MyApp> {
           width: double.infinity,
           margin: EdgeInsets.all(20),
           child: Text(
-            'Bikram Quiz App',
+            'Quiz App',
             style: TextStyle(
               fontSize: 30,
             ),
             textAlign: TextAlign.center,
           ),
         )),
-        body: number < _questions.length
-            ? Quiz(
-                answer2: answer2,
-                questions: _questions,
-                number: number,
-              )
-            : Alert(totalScore, reset),
+        body: number == 0
+            ? Start(start)
+            : number < _questions.length
+                ? Quiz(
+                    answer2: answer2,
+                    questions: _questions,
+                    number: number,
+                  )
+                : Alert(totalScore, reset),
       ),
     );
   }
