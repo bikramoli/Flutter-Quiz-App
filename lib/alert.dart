@@ -6,38 +6,51 @@ class Alert extends StatelessWidget {
 
   Alert(this.resultScore, this.reset);
 
-  //String get resultPhrase {
-  //var resultText = resultScore.toString();
-  // if (resultScore <= 8) {
-  //   resultText = ('You are awsome' + resultScore.toString());
-  // } else if (resultScore <= 12) {
-  //   resultText = ('Pretty likeable' + resultScore.toString());
-  //  } else if (resultScore <= 16) {
-  //   resultText = ('You are strange' + resultScore.toString());
-  //  } else {
-  //   resultText = ('You are so bad' + resultScore.toString());
-  // }
-  //return resultText;
-  // }
+  String get resultPhrase {
+    var resultText = resultScore.toString();
+    if (resultScore <= 30) {
+      resultText = ('You are awsome because your score is:-');
+    } else if (resultScore <= 40) {
+      resultText = ('Pretty likeable because your score is:-');
+    } else if (resultScore <= 60) {
+      resultText = ('You are strange because your score is:-');
+    } else {
+      resultText = ('You are so bad because your score is:-');
+    }
+    return resultText;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Congrate your score is' + ' ' + resultScore.toString(),
-          style: TextStyle(fontSize: 30, color: Colors.red),
-          textAlign: TextAlign.center,
-        ),
-        RaisedButton(
-          child: Text(
-            'Go to first page',
-            style: TextStyle(fontSize: 30),
-            textAlign: TextAlign.center,
-          ),
-          onPressed: reset,
-        )
-      ],
-    );
+    return Container(
+        width: double.infinity,
+        margin: EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Text(
+              resultPhrase,
+              // 'Congrate your score is' + ' ' + resultScore.toString(),
+              style: TextStyle(
+                  fontFamily: 'RobotoMono', fontSize: 30, color: Colors.red),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              resultScore.toString(),
+              style: TextStyle(
+                fontSize: 40,
+                color: Colors.green,
+                fontFamily: 'RobotoMono',
+              ),
+            ),
+            RaisedButton(
+              child: Text(
+                'Go to first page',
+                style: TextStyle(fontSize: 30, fontFamily: 'RobotoMono'),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: reset,
+            )
+          ],
+        ));
   }
 }

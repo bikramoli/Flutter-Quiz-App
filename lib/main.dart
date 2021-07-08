@@ -43,6 +43,7 @@ class MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     var _questions = [
+      {},
       {
         'questionText': 'What is your favourate animal?',
         'answers': [
@@ -73,6 +74,7 @@ class MyAppState extends State<MyApp> {
     ];
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
             title: Container(
