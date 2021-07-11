@@ -8,14 +8,14 @@ class Alert extends StatelessWidget {
 
   String get resultPhrase {
     var resultText = resultScore.toString();
-    if (resultScore <= 30) {
-      resultText = ('You are awsome because your score is:-');
-    } else if (resultScore <= 40) {
-      resultText = ('Pretty likeable because your score is:-');
-    } else if (resultScore <= 60) {
-      resultText = ('You are strange because your score is:-');
+    if (resultScore >= 40) {
+      resultText = ('Just Passed, but not enough:-');
+    } else if (resultScore >= 60) {
+      resultText = ('You passed but it could be better:-');
+    } else if (resultScore > 80) {
+      resultText = ('Excelient !!!, your mom and dad will be proud of you:-');
     } else {
-      resultText = ('You are so bad because your score is:-');
+      resultText = ('Poor !!! better luck next time:-');
     }
     return resultText;
   }
